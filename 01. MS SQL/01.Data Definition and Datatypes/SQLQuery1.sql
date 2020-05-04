@@ -377,3 +377,11 @@ INSERT INTO Employees(FirstName, MiddleName, LastName, JobTitle, DepartmentId, H
 SELECT * FROM Towns
 SELECT * FROM Departments
 SELECT * FROM Employees
+--20--
+SELECT * FROM Towns
+ORDER BY [Name]
+SELECT * FROM Departments
+ORDER BY [Name]
+SELECT * FROM Employees
+ORDER BY Salary DESC
+--21--
