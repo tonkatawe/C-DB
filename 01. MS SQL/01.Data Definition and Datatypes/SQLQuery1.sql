@@ -385,3 +385,21 @@ ORDER BY [Name]
 SELECT * FROM Employees
 ORDER BY Salary DESC
 --21--
+USE SoftUni
+SELECT [Name] FROM Towns
+ORDER BY [Name]
+
+SELECT [Name] FROM Departments
+ORDER BY [Name]
+
+SELECT FirstName, LastName, JobTitle, Salary FROM Employees
+ORDER BY Salary DESC
+--22--
+UPDATE Employees SET Salary += 0.10*Salary
+SELECT Salary FROM Employees
+--23--
+USE Hotel
+UPDATE Payments SET TaxRate -= 0.03*TaxRate
+SELECT TaxRate FROM Payments
+--24--
+DELETE FROM Occupancies 
