@@ -67,3 +67,49 @@ SELECT DepositAmount - LEAD(DepositAmount) OVER(ORDER BY Id) AS Diff
 FROM WizzardDeposits)
 AS e
 --13--
+USE Softuni
+SELECT DepartmentID, SUM(Salary) AS TotalSalary
+FROM Employees
+GROUP BY DepartmentID
+ORDER BY DepartmentID
+--14--
+SELECT DepartmentID, MIN(Salary) AS MinimumSalary
+FROM Employees
+WHERE HireDate > 01/01/2000 AND DepartmentID IN (2,5,7)
+GROUP BY DepartmentID
+HAVING DepartmentID IN (2,5,7)
+--15--
+SELECT *
+INTO MyTable 
+FROM Employees
+WHERE Salary >30000
+DELETE FROM MyTable
+WHERE ManagerID = 42
+UPDATE MyTable
+SET Salary = Salary+5000
+WHERE DepartmentID=1
+SELECT DepartmentID, AVG(Salary) AS AverageSalary
+FROM MyTable
+GROUP BY DepartmentID
+--16--
+SELECT DepartmentID, MAX(Salary) As MaxSalary
+FROM Employees
+GROUP BY DepartmentID
+HAVING MAX(Salary)<30000 OR Max(Salary)> 70000
+--17--
+SELECT Count(Salary) AS [Count]
+FROM Employees
+GROUP BY ManagerID
+HAVING ManagerID IS NULL
+--18--
+SELECT DISTINCT DepartmentID, Salary FROM(
+SELECT DepartmentId, Salary,
+DENSE_RANK() OVER(PARTITION BY DepartmentID ORDER BY Salary DESC) AS Ranked
+FROM Employees) 
+AS e
+WHERE e.Ranked =3
+--19--
+SELECT TOP(10) FirstName, LastName, DepartmentID
+FROM Employees AS e
+WHERE Salary > (SELECT AVG(Salary) FROM Employees WHERE DepartmentID = e.DepartmentID)
+ORDER BY DepartmentID
